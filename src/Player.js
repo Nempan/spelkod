@@ -13,24 +13,26 @@ export default class Player extends GameObject {
       this.speedX = 0;
       this.speedY = 0;
       this.maxSpeedX = 0.0000000000000000000000000001;
+      this.maxSpeedY = 0.0000000000000000000000000001;
       this.jumpSpeed = 20;
 
       this.color = "255, 0, 0";
 
-      this.frameWidth = 32;
-      this.frameHeight = 33;
+      this.frameWidth = 129;
+      this.frameHeight = 129;
       this.frameX = 0;
       this.frameY = 0;
 
       this.flip = false;
       this.maxFrames = 7;
 
-      this.fps = 20;
+      this.fps = 8;
       this.timer = 0;
       this.interval = 1000 / this.fps;
 
       this.attackDelay = 0;
       this.attackInterval = 100;
+      this.x = 570
   }
 
   update(deltaTime) {
@@ -41,22 +43,25 @@ export default class Player extends GameObject {
       if (this.game.input.keys.has("ArrowRight")) {
           this.speedX += this.maxSpeedX;
       }
-      if (
-          this.game.input.keys.has("ArrowRight") &&
-          this.game.input.keys.has("ArrowLeft")
-      ) {
-          this.speedX = 0;
-      }
+      if (this.game.input.keys.has("ArrowUp")) {
+        this.speedX += this.maxSpeedX;
+    }
+    if (this.game.input.keys.has("ArrowDown")) {
+        this.speedX += this.maxSpeedX;
+    }
+     
       if (
           !this.game.input.keys.has("ArrowRight") &&
-          !this.game.input.keys.has("ArrowLeft")
+          !this.game.input.keys.has("ArrowLeft") &&
+          !this.game.input.keys.has("ArrowUp") &&
+          !this.game.input.keys.has("ArrowDown")
       ) {
           this.speedX = 0;
       }
 
-      if (this.game.input.keys.has("ArrowUp") && this.grounded) {
-          this.speedY = -this.jumpSpeed;
-          this.grounded = false;
+      if (this.game.input.keys.has("ArrowUp")) {
+          this.speedY = -this.maxSpeedY;
+          
       }
 
       if (this.grounded) {
@@ -69,15 +74,19 @@ export default class Player extends GameObject {
       this.x += this.speedX;
 
       if (this.speedX != 0) {
-          this.frameY = 4;
-          this.maxFrames = 7;
-      } else {
-          this.frameY = 1;
-          this.maxFrames = 3;
-      }
+        this.frameY = 0; 
+        this.maxFrames = 4;
+    } else if (this.speedY != 0) {
+        this.frameY = 1;
+        this.maxFrames = 4;
+    } else {
+        this.frameY = 0; 
+        this.maxFrames = 1;
+    }
+    
 
-      if (this.y > 320) {
-          this.y = 320;
+      if (this.y > 340) {
+          this.y = 340;
           this.speedY = 0;
           this.grounded = true;
       }
