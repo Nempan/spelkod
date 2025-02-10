@@ -24,3 +24,4 @@ const animate = (timeStamp) => {
 
 
 export{ setup }
+
