@@ -9,6 +9,7 @@ export default class Player extends GameObject {
       this.image = new Image();
       this.image.src = playerImage;
 
+      
       this.game = game;
 
       this.speedX = 0;
