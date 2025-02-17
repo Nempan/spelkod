@@ -1,11 +1,12 @@
 import GameObject from "./GameObject";
+import floorImage  from "./assets/Floor.png"
 
 export default class Background extends GameObject {
   constructor(x, y, width, height, color, speed, game) {
     super(x, y, width, height, color, speed, game);
 
     this.image = new Image();
-    this.image.src = "./src/assets/Floor.png";
+    this.image.src = floorImage;
 
     this.speedX = 0;
     this.speedY = 0;

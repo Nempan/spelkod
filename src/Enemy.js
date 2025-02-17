@@ -1,4 +1,5 @@
 import GameObject from "./GameObject"
+import enemyImage from "./assets/orc1.png"
 
 export default class Enemy {
     constructor( x, y, width, height, color, speed, game){
@@ -10,7 +11,7 @@ export default class Enemy {
         this.speed = speed
 
         this.image = new Image();
-        this.image.src = "./src/assets/orc1.png";
+        this.image.src = enemyImage;
 
         
         this.frameWidth = 65;
@@ -49,6 +50,7 @@ export default class Enemy {
         }
         if(this.y > 350){
             this.y -= this.speedY
+            
         }
 
         

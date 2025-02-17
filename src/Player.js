@@ -1,12 +1,13 @@
 import GameObject from "./GameObject"
 import Projectile from "./Projectile"
+import playerImage from "./assets/Cat.png"
 
 export default class Player extends GameObject {
   constructor(x, y, width, heigth, color, speed, game) {
       super(x, y, width, heigth, color, speed, game);
 
       this.image = new Image();
-      this.image.src = "./src/assets/Cat.png";
+      this.image.src = playerImage;
 
       this.game = game;
 
